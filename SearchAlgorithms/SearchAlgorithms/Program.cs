@@ -13,10 +13,11 @@ namespace SearchAlgorithms
 		{
 			
 			var arrayOfDownloadedWords = DownloadWords();
+			LinearSearch(arrayOfDownloadedWords, "aahs");
 			Console.ReadLine();
 		}
 
-		public static string[] DownloadWords()
+		private static string[] DownloadWords()
 		{
 			string wordsDownloadedFromSource;
 			using (var webClient = new WebClient())
@@ -28,10 +29,24 @@ namespace SearchAlgorithms
 			return wordsSplitIntoArray;
 		}
 
-		public static string[] SplitDownloadedWordsIntoArray(string words)
+		private static string[] SplitDownloadedWordsIntoArray(string words)
 		{
 			var arrayOfDownloadedWords = words.Split('\n');
 			return arrayOfDownloadedWords;
+		}
+
+		private static void LinearSearch(string[] arrayOfWords, string userGeneratedWord)
+		{
+			for (int i = 0; i < arrayOfWords.Length; i++)
+			{
+				if(arrayOfWords[i] == userGeneratedWord)
+				{
+					Console.WriteLine($"{userGeneratedWord} is a match, it is entry {i} in the array");
+					return;
+				}
+			}
+
+			Console.WriteLine("Sorry there is no match");
 		}
 	}
 }
