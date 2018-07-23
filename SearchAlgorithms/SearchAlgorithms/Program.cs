@@ -13,7 +13,8 @@ namespace SearchAlgorithms
 		{
 			
 			var arrayOfDownloadedWords = DownloadWords();
-			LinearSearch(arrayOfDownloadedWords, "aahs");
+			var findThisWord = WordUserWantsToFind();
+			LinearSearch(arrayOfDownloadedWords, findThisWord);
 			Console.ReadLine();
 		}
 
@@ -47,6 +48,12 @@ namespace SearchAlgorithms
 			}
 
 			Console.WriteLine("Sorry there is no match");
+		}
+
+		private static string WordUserWantsToFind()
+		{
+			Console.WriteLine("Please Enter the word you wish to search for:");
+			return Console.ReadLine();
 		}
 	}
 }
