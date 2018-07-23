@@ -11,11 +11,12 @@ namespace SearchAlgorithms
 	{
 		static void Main(string[] args)
 		{
-			var p = new Program();
-			p.DownloadWords();
+			
+			var arrayOfDownloadedWords = DownloadWords();
+			Console.ReadLine();
 		}
 
-		public string[] DownloadWords()
+		public static string[] DownloadWords()
 		{
 			string wordsDownloadedFromSource;
 			using (var webClient = new WebClient())
@@ -23,10 +24,14 @@ namespace SearchAlgorithms
 				wordsDownloadedFromSource = webClient.DownloadString(@"https://raw.githubusercontent.com/dwyl/english-words/master/words.txt");
 			}
 
-			var arrayOfDownloadedWords = wordsDownloadedFromSource.Split('\n');
+			var wordsSplitIntoArray = SplitDownloadedWordsIntoArray(wordsDownloadedFromSource);
+			return wordsSplitIntoArray;
+		}
 
+		public static string[] SplitDownloadedWordsIntoArray(string words)
+		{
+			var arrayOfDownloadedWords = words.Split('\n');
 			return arrayOfDownloadedWords;
-
 		}
 	}
 }
