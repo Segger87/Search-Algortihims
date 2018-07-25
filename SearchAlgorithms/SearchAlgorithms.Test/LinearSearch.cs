@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SearchAlgorithms;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SearchAlgorithms.TypesOfSearches;
 
 namespace SearchAlgorithms.Test
@@ -12,7 +10,11 @@ namespace SearchAlgorithms.Test
 		public void ExpectedSearchResult_ActualSearchResult_AreTheSame()
 		{
 			//Arrange
-	
+			var expected = new DownloadWords();
+			var IWantToUseA = new Searches();
+
+		
+
 			//Act
 	
 			//Assert

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using SearchAlgorithms.TypesOfSearches;
+﻿using SearchAlgorithms.TypesOfSearches;
 
 namespace SearchAlgorithms
 {
@@ -12,12 +6,12 @@ namespace SearchAlgorithms
 	{
 		static void Main(string[] args)
 		{
-			var ToFindAWord = new DownloadWords();
+			var ToFindThisWord = new DownloadWords();
 			var IWantToUseA = new Searches();
 
-			ToFindAWord.WordUserWantsToFind();
-			IWantToUseA.LinearSearch(ToFindAWord);
-			
-		}	
+			ToFindThisWord.WordUserWantsToFind();
+			IWantToUseA.LinearSearch(ToFindThisWord);
+			IWantToUseA.BinarySearch(ToFindThisWord);
+		}
 	}
 }
