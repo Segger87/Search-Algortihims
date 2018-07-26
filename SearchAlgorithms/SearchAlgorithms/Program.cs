@@ -9,7 +9,7 @@ namespace SearchAlgorithms
 			var ToFindThisWord = new DownloadWords();
 			var IWantToUseA = new Searches();
 
-			ToFindThisWord.WordUserWantsToFind();
+			//ToFindThisWord.WordUserWantsToFind();
 			IWantToUseA.LinearSearch(ToFindThisWord);
 			IWantToUseA.BinarySearch(ToFindThisWord);
 		}

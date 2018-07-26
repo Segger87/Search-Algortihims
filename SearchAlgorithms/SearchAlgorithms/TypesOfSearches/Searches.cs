@@ -8,9 +8,9 @@ namespace SearchAlgorithms.TypesOfSearches
 		{
 			for (int i = 0; i < d.WordsSeperatedIntoArray.Length; i++)
 			{
-				if (d.WordsSeperatedIntoArray[i] == d.WordBeingSearchedFor)
+				if (d.WordsSeperatedIntoArray[i] == d.RandomWord)
 				{
-					Console.WriteLine($"{d.WordBeingSearchedFor} is a match, it is entry {i} in the array");
+					Console.WriteLine($"{d.RandomWord} is a match, it is entry {i} in the array");
 					Console.ReadLine();
 					return;
 				}
@@ -22,30 +22,32 @@ namespace SearchAlgorithms.TypesOfSearches
 
 		public void BinarySearch(DownloadWords words)
 		{ 
-			int frontOfArray = words.WordsSeperatedIntoArray.Length - 1;
+			int endOfArray = words.WordsSeperatedIntoArray.Length;
 			int middleOfArray = words.WordsSeperatedIntoArray.Length / 2;
-			int endOfArray = 0;
+			int frontOfArray = 0;
 
-			while (endOfArray <= frontOfArray)
+			while (frontOfArray <= endOfArray)
 			{
-				int middle = frontOfArray + ((endOfArray - frontOfArray) >> 1);
+				int middle = endOfArray + ((frontOfArray - endOfArray) >> 1);
 
-				if (string.Compare(words.WordBeingSearchedFor, words.WordsSeperatedIntoArray[middle], true) == 0)
+				if (string.Compare(words.RandomWord, words.WordsSeperatedIntoArray[middle], true) == 0)
 				{
-					Console.WriteLine($"The word has been found at index value {middle} using Binary Search");
+					Console.WriteLine($"The word {words.RandomWord} hasbeen found at index value {middle} using Binary Search");
 					Console.ReadLine();
 					return;
 				}
-				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.WordBeingSearchedFor, true) > 0)
-				{
-					frontOfArray = middle;
-				}
-				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.WordBeingSearchedFor, true) < 0)
+				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.RandomWord, true) > 0)
 				{
 					endOfArray = middle;
 				}
-
-				Console.WriteLine("Sorry there is no match");
+				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.RandomWord, true) < 0)
+				{
+					frontOfArray = middle;
+				}
+				else
+				{
+					Console.WriteLine("Sorry there is no match");
+				}	
 			}
 		}
 	}
