@@ -1,53 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SearchAlgorithms.TypesOfSearches
 {
 	public class Searches
 	{
+		public List<TimeSpan> TotalTimeForLinearSearch = new List<TimeSpan>();
+		public List<TimeSpan> TotalTimeForBinarySearch = new List<TimeSpan>();
 		public void LinearSearch(DownloadWords d)
 		{
+			var methodExecutionTime = Stopwatch.StartNew();
+
 			for (int i = 0; i < d.WordsSeperatedIntoArray.Length; i++)
 			{
 				if (d.WordsSeperatedIntoArray[i] == d.RandomWord)
 				{
-					Console.WriteLine($"{d.RandomWord} is a match, it is entry {i} in the array");
-					Console.ReadLine();
+					methodExecutionTime.Stop();
+					TotalTimeForLinearSearch.Add(methodExecutionTime.Elapsed);
+					Console.WriteLine($"{d.RandomWord} is a match, it is entry {i} in the array, it took { methodExecutionTime.Elapsed} Seconds to find");
 					return;
 				}
 			}
-
 			Console.WriteLine("Sorry there is no match");
-			Console.ReadLine();
 		}
 
 		public void BinarySearch(DownloadWords words)
-		{ 
-			int endOfArray = words.WordsSeperatedIntoArray.Length;
-			int middleOfArray = words.WordsSeperatedIntoArray.Length / 2;
-			int frontOfArray = 0;
-
-			while (frontOfArray <= endOfArray)
+		{
+			var methodExecutionTime = Stopwatch.StartNew();
+			int leftSide = 0;
+			int rightSide = words.WordsSeperatedIntoArray.Length - 1;
+			
+			while (leftSide <= rightSide)
 			{
-				int middle = endOfArray + ((frontOfArray - endOfArray) >> 1);
+				int middle = (leftSide + rightSide) / 2;
 
-				if (string.Compare(words.RandomWord, words.WordsSeperatedIntoArray[middle], true) == 0)
+				if (string.Compare(words.RandomWord, words.WordsSeperatedIntoArray[middle]) == 0)
 				{
-					Console.WriteLine($"The word {words.RandomWord} hasbeen found at index value {middle} using Binary Search");
-					Console.ReadLine();
+					methodExecutionTime.Stop();
+					TotalTimeForBinarySearch.Add(methodExecutionTime.Elapsed);
+					Console.WriteLine($"The word {words.RandomWord} has been found at index value {middle} using Binary Search, it took {methodExecutionTime.Elapsed} to find");
 					return;
 				}
-				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.RandomWord, true) > 0)
+				if (string.Compare(words.RandomWord, words.WordsSeperatedIntoArray[middle]) > 0)
 				{
-					endOfArray = middle;
+					leftSide = middle + 1;
 				}
-				else if (string.Compare(words.WordsSeperatedIntoArray[middle], words.RandomWord, true) < 0)
+				else 
 				{
-					frontOfArray = middle;
+					rightSide = middle - 1;
 				}
-				else
-				{
-					Console.WriteLine("Sorry there is no match");
-				}	
 			}
 		}
 	}
