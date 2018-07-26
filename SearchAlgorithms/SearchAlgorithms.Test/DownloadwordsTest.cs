@@ -9,10 +9,10 @@ namespace SearchAlgorithms.Test
 		public void ExpectedLengthOfDownloadWordsArray_ExpectedLengthOfDownloadWordsArray_AreEqual()
 		{
 			//Arrange
-			var expected = new DownloadWords();
-
+			var words = new DownloadWords();
+			var expected = new SortedWords(words);
 			//Act
-			var actual = new DownloadWords();
+			var actual = new SortedWords(words);
 
 			//Assert
 			Assert.AreEqual(expected.WordsSeperatedIntoArray.Length, actual.WordsSeperatedIntoArray.Length);

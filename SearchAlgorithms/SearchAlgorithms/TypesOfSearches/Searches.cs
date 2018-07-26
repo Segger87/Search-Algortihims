@@ -8,7 +8,7 @@ namespace SearchAlgorithms.TypesOfSearches
 	{
 		public List<TimeSpan> TotalTimeForLinearSearch = new List<TimeSpan>();
 		public List<TimeSpan> TotalTimeForBinarySearch = new List<TimeSpan>();
-		public void LinearSearch(DownloadWords d)
+		public void LinearSearch(SortedWords d)
 		{
 			var methodExecutionTime = Stopwatch.StartNew();
 
@@ -25,7 +25,7 @@ namespace SearchAlgorithms.TypesOfSearches
 			Console.WriteLine("Sorry there is no match");
 		}
 
-		public void BinarySearch(DownloadWords words)
+		public void BinarySearch(SortedWords words)
 		{
 			var methodExecutionTime = Stopwatch.StartNew();
 			int leftSide = 0;

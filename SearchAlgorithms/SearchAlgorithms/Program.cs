@@ -9,8 +9,9 @@ namespace SearchAlgorithms
 	{
 		static void Main(string[] args)
 		{
-			int amountOfSearchesToPerform = 100;
-			var randomWords = new Program().SelectWords().Take(amountOfSearchesToPerform);
+			int amountOfSearchesToPerform = 10;
+			var downloadWords = new DownloadWords();
+			var randomWords = new Program().SelectWords(downloadWords).Take(amountOfSearchesToPerform);	
 			var search = new Searches();
 
 			foreach (var word in randomWords)
@@ -19,45 +20,45 @@ namespace SearchAlgorithms
 				search.BinarySearch(word);
 			}
 
-			var combinedLinearSearchTime = TotalLinearSearchTimes(search);
-			var combinedBinarySearchTime = TotalBinarySearchTimes(search);
-
+			var combinedLinearSearchTime = TotalSearchTimes("linear", search);
+			var combinedBinarySearchTime = TotalSearchTimes("binary", search);
 			PrintResults(combinedLinearSearchTime, combinedBinarySearchTime, amountOfSearchesToPerform);	
 			Console.ReadLine();
 		}
 
-		private IEnumerable<DownloadWords> SelectWords()
+		private IEnumerable<SortedWords> SelectWords(DownloadWords dw)
 		{
 			while (true)
 			{
-				yield return new DownloadWords
+				yield return new SortedWords(dw)
 				{
 				};
 			}
 		}
 
-		public static TimeSpan TotalLinearSearchTimes(Searches search)
+		public static TimeSpan TotalSearchTimes(string type, Searches time)
 		{
-			var combinedLinearSearchTime = new TimeSpan();
-
-			foreach (var time in search.TotalTimeForLinearSearch)
+			var combinedSearchTime = new TimeSpan();
+			switch (type.ToLower())
 			{
-				combinedLinearSearchTime += time;
+				case "linear":
+					foreach (var t in time.TotalTimeForLinearSearch)
+					{
+						combinedSearchTime += t;
+					}
+					break;
+				case "binary":
+					foreach (var t in time.TotalTimeForBinarySearch)
+					{
+						combinedSearchTime += t;
+					}
+					break;
+				default:
+					Console.WriteLine("Sorry that is not a recognised search type");
+					break;
 			}
-
-			return combinedLinearSearchTime;
-		}
-
-		public static TimeSpan TotalBinarySearchTimes(Searches search)
-		{
-			var combinedBinarySearchTime = new TimeSpan();
-
-			foreach (var time in search.TotalTimeForBinarySearch)
-			{
-				combinedBinarySearchTime += time;
-			}
-
-			return combinedBinarySearchTime;
+			
+			return combinedSearchTime;
 		}
 
 		public static void PrintResults(TimeSpan linear, TimeSpan binary, int num)
