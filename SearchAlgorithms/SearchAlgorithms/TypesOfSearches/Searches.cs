@@ -29,7 +29,7 @@ namespace SearchAlgorithms.TypesOfSearches
 		{
 			var methodExecutionTime = Stopwatch.StartNew();
 			int leftSide = 0;
-			int rightSide = words.WordsSeperatedIntoArray.Length - 1;
+			int rightSide = words.WordsSeperatedIntoArray.Length;
 			
 			while (leftSide <= rightSide)
 			{

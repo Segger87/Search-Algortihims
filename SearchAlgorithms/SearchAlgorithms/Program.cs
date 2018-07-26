@@ -9,7 +9,7 @@ namespace SearchAlgorithms
 	{
 		static void Main(string[] args)
 		{
-			int amountOfSearchesToPerform = 10;
+			int amountOfSearchesToPerform = 100;
 			var downloadWords = new DownloadWords();
 			var randomWords = new Program().SelectWords(downloadWords).Take(amountOfSearchesToPerform);	
 			var search = new Searches();
@@ -68,7 +68,7 @@ namespace SearchAlgorithms
 
 			Console.WriteLine($"Search is Complete.");
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine($"Total time for all Linear Searches are search is {linear} \nTotal time for all Binary Searches are {binary}");
+			Console.WriteLine($"Total time for all Linear searches is {linear} \nTotal time for all Binary Searches are {binary}");
 			Console.WriteLine($"Over {num} iterations Binary search is {differnceInSpeed} seconds quicker than Linear Search.");
 			Console.WriteLine($"Binary search is {percentageDifference} times faster");
 			Console.ResetColor();
