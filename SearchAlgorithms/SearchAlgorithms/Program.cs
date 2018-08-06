@@ -26,7 +26,7 @@ namespace SearchAlgorithms
 			Console.ReadLine();
 		}
 
-		private IEnumerable<SortedWords> SelectWords(DownloadWords dw)
+		public IEnumerable<SortedWords> SelectWords(DownloadWords dw)
 		{
 			while (true)
 			{
