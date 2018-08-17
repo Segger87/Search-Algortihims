@@ -16,7 +16,7 @@ namespace SearchAlgorithms
 		{
 			SplitDownloadedWordsIntoArray(dw);
 		}
-		public void SplitDownloadedWordsIntoArray(DownloadWords dw)
+		private void SplitDownloadedWordsIntoArray(DownloadWords dw)
 		{
 			WordsSeperatedIntoArray = dw.WordsFromSource.Split('\n');
 			GenerateRandomWord();
@@ -28,7 +28,7 @@ namespace SearchAlgorithms
 			WordBeingSearchedFor = Console.ReadLine();
 		}
 
-		public void GenerateRandomWord()
+		private void GenerateRandomWord()
 		{
 			var random = new Random();
 			int randomNumber = random.Next(0, WordsSeperatedIntoArray.Length);

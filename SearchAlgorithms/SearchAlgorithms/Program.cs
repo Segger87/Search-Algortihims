@@ -9,9 +9,15 @@ namespace SearchAlgorithms
 	{
 		static void Main(string[] args)
 		{
+
+			new Program().ExectuteProgram();
+		}
+
+		private void ExectuteProgram()
+		{
 			int amountOfSearchesToPerform = 100;
 			var downloadWords = new DownloadWords();
-			var randomWords = new Program().SelectWords(downloadWords).Take(amountOfSearchesToPerform);	
+			var randomWords = new Program().SelectWords(downloadWords).Take(amountOfSearchesToPerform);
 			var search = new Searches();
 
 			foreach (var word in randomWords)
@@ -22,11 +28,11 @@ namespace SearchAlgorithms
 
 			var combinedLinearSearchTime = TotalSearchTimes("linear", search);
 			var combinedBinarySearchTime = TotalSearchTimes("binary", search);
-			PrintResults(combinedLinearSearchTime, combinedBinarySearchTime, amountOfSearchesToPerform);	
+			PrintResults(combinedLinearSearchTime, combinedBinarySearchTime, amountOfSearchesToPerform);
 			Console.ReadLine();
 		}
 
-		public IEnumerable<SortedWords> SelectWords(DownloadWords dw)
+		private IEnumerable<SortedWords> SelectWords(DownloadWords dw)
 		{
 			while (true)
 			{
@@ -36,7 +42,7 @@ namespace SearchAlgorithms
 			}
 		}
 
-		public static TimeSpan TotalSearchTimes(string type, Searches time)
+		private static TimeSpan TotalSearchTimes(string type, Searches time)
 		{
 			var combinedSearchTime = new TimeSpan();
 			switch (type.ToLower())
@@ -61,7 +67,7 @@ namespace SearchAlgorithms
 			return combinedSearchTime;
 		}
 
-		public static void PrintResults(TimeSpan linear, TimeSpan binary, int num)
+		private static void PrintResults(TimeSpan linear, TimeSpan binary, int num)
 		{
 			var differnceInSpeed = CalculateSearchTimeDifference(linear, binary);
 			var percentageDifference = TimesFaster(linear, binary);
@@ -74,12 +80,12 @@ namespace SearchAlgorithms
 			Console.ResetColor();
 		}
 
-		public static TimeSpan CalculateSearchTimeDifference(TimeSpan linear, TimeSpan binary)
+		private static TimeSpan CalculateSearchTimeDifference(TimeSpan linear, TimeSpan binary)
 		{
 			return (linear - binary);
 		}
 
-		public static double TimesFaster(TimeSpan linear, TimeSpan binary)
+		private static double TimesFaster(TimeSpan linear, TimeSpan binary)
 		{		
 			return linear.TotalMilliseconds / binary.TotalMilliseconds;
 		}
