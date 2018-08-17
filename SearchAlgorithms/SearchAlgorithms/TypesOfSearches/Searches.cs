@@ -19,7 +19,7 @@ namespace SearchAlgorithms.TypesOfSearches
 				{
 					methodExecutionTime.Stop();
 					TotalTimeForLinearSearch.Add(methodExecutionTime.Elapsed);
-					Console.WriteLine($"{word.RandomWord} is a match, it is entry {i} in the array, it took { methodExecutionTime.Elapsed} Seconds to find");
+					Console.WriteLine($"The Word {word.RandomWord} has been found using Linear Search, it is entry {i} in the array, it took { methodExecutionTime.Elapsed} Seconds to find");
 					return word.RandomWord;
 				}
 			}
